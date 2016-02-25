@@ -20,7 +20,7 @@ public class TumorType  {
   private String UMLS = null;
   private String color = null;
   private String parent = null;
-  private List<Code> children = new ArrayList<Code>();
+  private List<String> children = new ArrayList<String>();
 
   
   /**
@@ -119,10 +119,10 @@ public class TumorType  {
    **/
   @ApiModelProperty(value = "List of all available children tumor types.")
   @JsonProperty("children")
-  public List<Code> getChildren() {
+  public List<String> getChildren() {
     return children;
   }
-  public void setChildren(List<Code> children) {
+  public void setChildren(List<String> children) {
     this.children = children;
   }
 
