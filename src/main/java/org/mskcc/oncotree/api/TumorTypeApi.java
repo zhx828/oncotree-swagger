@@ -5,6 +5,7 @@ import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiParam;
 import io.swagger.annotations.ApiResponses;
 import org.mskcc.oncotree.model.TumorType;
+import org.mskcc.oncotree.model.TumorTypePostResp;
 import org.mskcc.oncotree.model.TumorTypeQueries;
 import org.mskcc.oncotree.model.TumorTypeQuery;
 import org.mskcc.oncotree.utils.TumorTypesUtil;
@@ -46,7 +47,7 @@ public class TumorTypeApi {
     }
 
 
-    @ApiOperation(value = "Tumor Types", notes = "...", responseContainer = "List")
+    @ApiOperation(value = "Tumor Types", notes = "...", response = TumorTypePostResp.class, responseContainer = "List")
     @io.swagger.annotations.ApiResponses(value = {
         @io.swagger.annotations.ApiResponse(code = 200, message = "An array of tumor types"),
         @io.swagger.annotations.ApiResponse(code = 200, message = "Unexpected error")})
@@ -54,18 +55,16 @@ public class TumorTypeApi {
         produces = {"application/json"},
         consumes = {"application/json"},
         method = RequestMethod.POST)
-    public ResponseEntity<List<List<TumorType>>> tumorTypePost(
+    public ResponseEntity<List<TumorTypePostResp>> tumorTypePost(
 
         @ApiParam(value = "", required = true) @RequestBody TumorTypeQueries queries)
         throws NotFoundException {
 
-        List<List<TumorType>> matchedTumorTypes = new ArrayList<>();
+        List<TumorTypePostResp> matchedTumorTypes = new ArrayList<>();
 
         for (TumorTypeQuery query : queries) {
-            matchedTumorTypes.add(TumorTypesUtil.findTumorTypes(query));
+            matchedTumorTypes.add((TumorTypePostResp)TumorTypesUtil.findTumorTypes(query));
         }
-        return new ResponseEntity<List<List<TumorType>>>(matchedTumorTypes, HttpStatus.OK);
+        return new ResponseEntity<List<TumorTypePostResp>>(matchedTumorTypes, HttpStatus.OK);
     }
-
-
 }

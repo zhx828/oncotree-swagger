@@ -9,6 +9,7 @@ import org.springframework.context.support.ClassPathXmlApplicationContext;
 import org.springframework.core.io.Resource;
 
 import java.io.IOException;
+import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.UnsupportedEncodingException;
 import java.util.*;
@@ -67,6 +68,10 @@ public class TumorTypesUtil {
             tumorTypes = findTumorType((Map<String, Object>) CacheUtil.getTumorTypes().get("TISSUE"), tumorTypes, key, query.getQuery());
         }
         return tumorTypes;
+    }
+
+    public static InputStream getTumorTypeInputStream() {
+        return getInputStream(TUMOR_TREE_FILE);
     }
 
     private static List<TumorType> findTumorType(Map<String, Object> allTumorTypes, List<TumorType> matchedTumorTypes, String key, String keyword) {
@@ -158,11 +163,20 @@ public class TumorTypesUtil {
      */
     private static InputStreamReader getReader(String relativePath) {
         try {
-            ApplicationContext applicationContext = new ClassPathXmlApplicationContext();
-            Resource resource = applicationContext.getResource(relativePath);
-            return new InputStreamReader(resource.getInputStream(), "UTF-8");
+            return new InputStreamReader(getInputStream(relativePath), "UTF-8");
         } catch (UnsupportedEncodingException e) {
             e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
+
+    private static InputStream getInputStream(String relativePath) {
+        ApplicationContext applicationContext = new ClassPathXmlApplicationContext();
+        Resource resource = applicationContext.getResource(relativePath);
+        try {
+            return resource.getInputStream();
         } catch (IOException e) {
             e.printStackTrace();
         }

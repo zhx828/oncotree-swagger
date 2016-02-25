@@ -47,7 +47,7 @@ var tree = (function () {
             .append("svg:g")
             .attr("transform", "translate(" + m[3] + "," + 300 + ")");
 
-        d3.tsv("tumorType", function (csv) {
+        d3.tsv("tumor_types.txt", function (csv) {
             var rootDatum = new UniqueTreeNodeDatum();
             rootDatum.name = 'Tissue';
 
