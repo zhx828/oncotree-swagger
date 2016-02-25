@@ -166,8 +166,6 @@ public class TumorTypesUtil {
             return new InputStreamReader(getInputStream(relativePath), "UTF-8");
         } catch (UnsupportedEncodingException e) {
             e.printStackTrace();
-        } catch (IOException e) {
-            e.printStackTrace();
         }
         return null;
     }
