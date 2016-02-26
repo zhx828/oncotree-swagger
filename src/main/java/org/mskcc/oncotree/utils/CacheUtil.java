@@ -9,9 +9,10 @@ public class CacheUtil {
     public static Map<String, Object> tumorTypes = null;
 
     public static Map<String, Object> getTumorTypes() {
-        if (tumorTypes == null) {
+        //Don't cache tumor types file. It may be changed anytime.
+//        if (tumorTypes == null) {
             tumorTypes = TumorTypesUtil.getTumorTypes();
-        }
+//        }
         return tumorTypes;
     }
 }
