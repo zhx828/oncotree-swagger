@@ -3,7 +3,6 @@ package org.mskcc.oncotree.api;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiResponses;
-import org.mskcc.oncotree.model.InlineResponse200;
 import org.mskcc.oncotree.utils.CacheUtil;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -20,7 +19,7 @@ import static org.springframework.http.MediaType.APPLICATION_JSON_VALUE;
 public class TumorTypesApi {
 
 
-    @ApiOperation(value = "Tumor Types", notes = "Return all available tumor types.", response = InlineResponse200.class)
+    @ApiOperation(value = "Tumor Types", notes = "Return all available tumor types.")
     @ApiResponses(value = {
         @io.swagger.annotations.ApiResponse(code = 200, message = "Nested tumor types object."),
         @io.swagger.annotations.ApiResponse(code = 200, message = "Unexpected error")})

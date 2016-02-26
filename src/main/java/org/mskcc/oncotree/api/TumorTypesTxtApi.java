@@ -5,14 +5,12 @@ import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiResponses;
 import org.mskcc.oncotree.utils.TumorTypesUtil;
 import org.springframework.core.io.InputStreamResource;
-import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
-import java.io.IOException;
 import java.io.InputStream;
 
 import static org.springframework.http.MediaType.APPLICATION_JSON_VALUE;
@@ -32,8 +30,7 @@ public class TumorTypesTxtApi {
         produces = {"text/plain"},
 
         method = RequestMethod.GET)
-    public ResponseEntity<InputStreamResource> tumorTypesTxtGet()
-        throws NotFoundException {
+    public ResponseEntity<InputStreamResource> tumorTypesTxtGet() {
         InputStream inputStream = TumorTypesUtil.getTumorTypeInputStream();
         InputStreamResource inputStreamResource = new InputStreamResource(inputStream);
         return new ResponseEntity<>(inputStreamResource, HttpStatus.OK);

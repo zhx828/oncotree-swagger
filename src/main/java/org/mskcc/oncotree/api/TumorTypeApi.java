@@ -38,8 +38,7 @@ public class TumorTypeApi {
         method = RequestMethod.GET)
     public ResponseEntity<List<TumorType>> tumorTypeGet(@ApiParam(value = "Query type. It could be 'code', 'name', 'mainType', 'nci', 'umls' or 'color'", required = true) @RequestParam(value = "queryType", required = true) String queryType,
                                                         @ApiParam(value = "The query content", required = true) @RequestParam(value = "query", required = true) String query
-    )
-        throws NotFoundException {
+    ){
 
         List<TumorType> matchedTumorTypes = TumorTypesUtil.findTumorTypes(queryType, query);
 
@@ -57,8 +56,7 @@ public class TumorTypeApi {
         method = RequestMethod.POST)
     public ResponseEntity<List<TumorTypePostResp>> tumorTypePost(
 
-        @ApiParam(value = "", required = true) @RequestBody TumorTypeQueries queries)
-        throws NotFoundException {
+        @ApiParam(value = "", required = true) @RequestBody TumorTypeQueries queries){
 
         List<TumorTypePostResp> matchedTumorTypes = new ArrayList<>();
 

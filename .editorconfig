@@ -28,6 +28,12 @@ insert_final_newline = false
 [*.md]
 trim_trailing_whitespace = false
 
+[*.js]
+indent_size = 2
+
+[*.html]
+indent_size = 2
+
 # Formats for HTML files only
 [**.html]
 insert_final_newline = false
